@@ -7,6 +7,11 @@ class IGSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'category']
 
 class SlotSerializer(serializers.ModelSerializer):
+    ig = serializers.SlugRelatedField(
+        slug_field = 'name',
+        queryset = IG.objects.all(),
+    )
+
     class Meta:
         model = Slot
         fields = ['id', 'venue', 'capacity', 'startDateTime', 'endDateTime', 'description', 'ig']
